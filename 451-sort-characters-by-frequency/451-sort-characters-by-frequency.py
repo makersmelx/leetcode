@@ -1,8 +1,7 @@
 class Solution:
     def frequencySort(self, s: str) -> str:
-        counter = collections.Counter()
-        
-        for c in s:
-            counter[c] += 1
-        
-        return sorted(s,key=lambda c: (counter[c],c), reverse=True)
+        counter = collections.Counter(s)
+        ret = []
+        for k,v in sorted(counter.items(),key=lambda c: c[1], reverse=True):
+            ret.append(k*v)
+        return ''.join(ret)
