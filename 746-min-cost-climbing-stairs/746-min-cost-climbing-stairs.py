@@ -3,12 +3,12 @@ class Solution:
         size = len(cost)
         if size == 2:
             return min(cost[0:2])
-        first, second = 0, 0
-        for i in range(2, size + 1):
-            costs = min(first + cost[i-2], second + cost[i-1])
+        first, second = cost[0], cost[1]
+        for i in range(2, size):
+            costs = min(first, second) + cost[i]
             first = second
             second = costs
         
         
-        return second
+        return min(first, second)
         
