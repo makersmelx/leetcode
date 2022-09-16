@@ -5,22 +5,11 @@ class Solution:
             return False
         target = target // 2
         
-        dp = [[0 for _ in range(target + 1)] for _ in nums]
-        
-        for j in range(nums[0], target + 1):
-            dp[0][j] = nums[0]
+        dp = [0 for _ in range(target + 1)]
         
         for i in range(len(nums)):
-            for j in range(1, target+1):
-                if j >= nums[i]:
-                    dp[i][j] = max(dp[i-1][j], dp[i-1][j - nums[i]] + nums[i])
-                else:
-                    dp[i][j] = dp[i-1][j]
+            for j in range(target, nums[i] - 1, -1):
+                dp[j] = max(dp[j], dp[j - nums[i]] + nums[i])
         
-        
-        for i in range(len(nums)):
-            if dp[i][target] == target:
-                return True
-        
-        return False
+        return dp[target] == target
             
