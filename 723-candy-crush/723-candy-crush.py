@@ -10,21 +10,13 @@ class Solution:
                 for j in range(n - 2):
                     if board[i][j] == board[i][j+1] == board[i][j+2] != 0:
                         stable = False
-                        for itr in range(j, n):
-                            if board[i][itr] == board[i][j]:
-                                crush.add((i,itr))
-                            else:
-                                break
+                        crush.update([(i,j), (i,j+1), (i,j+2)])
             
             for i in range(m-2):
                 for j in range(n):
                     if board[i][j] == board[i+1][j] == board[i+2][j] != 0:
                         stable = False
-                        for itr in range(i, m):
-                            if board[itr][j] == board[i][j]:
-                                crush.add((itr,j))
-                            else:
-                                break
+                        crush.update([(i,j), (i+1,j), (i+2,j)])
             if stable:
                 break
             
